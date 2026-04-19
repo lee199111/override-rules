@@ -183,41 +183,6 @@ proxy-groups:
     filter: 美国|美|US|United States|🇺🇸
     exclude-filter: 0\.[0-5]|低倍率|省流|实验性
     type: load-balance
-  - name: GLOBAL
-    icon: https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
-    include-all: true
-    type: select
-    proxies:
-      - 选择代理
-      - 手动选择
-      - 静态资源
-      - AI服务
-      - 加密货币
-      - 苹果服务
-      - 谷歌服务
-      - 微软服务
-      - 哔哩哔哩
-      - 巴哈姆特
-      - YouTube
-      - Netflix
-      - TikTok
-      - Spotify
-      - E-Hentai
-      - Telegram
-      - 真相社交
-      - PikPak网盘
-      - SSH(22端口)
-      - 搜狗输入法
-      - 直连
-      - 广告拦截
-      - 低倍率节点
-      - 自动选择
-      - 故障转移
-      - 香港节点
-      - 台湾节点
-      - 新加坡节点
-      - 日本节点
-      - 美国节点
 rule-providers:
   ADBlock:
     type: http
