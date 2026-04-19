@@ -459,11 +459,13 @@ function buildBaseLists({ landing, lowCostNodes, countryGroupNames, nonLandingNo
 
     /**
      * "前置代理"候选列表：优先国家节点组。
-     * 非 regex 模式下，再拼接所有非落地节点名称枚举（如包含"美国 01"，排除"美国落地 01"）。
+     * 再拼接所有非落地节点名称枚举
      */
-    const frontProxySelector = [
-        ...new Set(buildList(countryGroupNames, !regexFilter && nonLandingNodes)),
-    ];
+    const frontProxySelector = buildList(
+        countryGroupNames,
+        !regexFilter && nonLandingNodes
+    );
+
 
     return {
         defaultProxies,
