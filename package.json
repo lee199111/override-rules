@@ -6,7 +6,10 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "generate": "node yaml_generator/generator.js",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && esbuild src/convert.ts --bundle --platform=neutral --format=iife --target=es2020 --outfile=convert.js --legal-comments=none --banner:js='/*! powerfullz 的 Substore 订阅转换脚本 | https://github.com/powerfullz/override-rules */'",
+    "generate": "npm run build && node yaml_generator/generator.js",
+    "minify": "terser convert.js -o convert.min.js -c -m --comments \"/^!/\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
@@ -17,8 +20,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "esbuild": "^0.25.12",
     "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.8.1"
+    "prettier": "^3.8.1",
+    "terser": "^5.44.0",
+    "typescript": "^5.9.3"
   }
 }

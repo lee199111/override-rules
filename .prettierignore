@@ -1,5 +1,6 @@
 # 自动生成的文件
 yamls/
+convert.js
 convert.min.js
 
 # 依赖
