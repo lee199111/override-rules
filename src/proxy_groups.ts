@@ -32,35 +32,30 @@ export function buildCountryProxyGroups({
         const meta = countriesMeta[country];
         if (!meta) continue;
 
-        let groupConfig: ProxyGroup;
+        let groupConfig: ProxyGroup = {
+            name: `${country}${NODE_SUFFIX}`,
+            icon: meta.icon,
+            type: groupType,
+            url: "https://cp.cloudflare.com/generate_204",
+            interval: 60,
+            tolerance: 20,
+            ...(loadBalance ? { strategy: "sticky-sessions" } : {}),
+        };
 
         if (!regexFilter) {
             const nodeNames = nodesByCountry?.[country] || [];
-            groupConfig = {
-                name: `${country}${NODE_SUFFIX}`,
-                icon: meta.icon,
-                type: groupType,
+            Object.assign(groupConfig, {
                 proxies: nodeNames,
-            };
+            });
         } else {
-            groupConfig = {
-                name: `${country}${NODE_SUFFIX}`,
-                icon: meta.icon,
+            Object.assign(groupConfig, {
                 "include-all": true,
                 filter: meta.pattern,
                 "exclude-filter": landing
                     ? `${LANDING_PATTERN}|${LOW_COST_FILTER}`
                     : LOW_COST_FILTER,
-                type: groupType,
-            };
+            });
         }
-
-        Object.assign(groupConfig, {
-            url: "https://cp.cloudflare.com/generate_204",
-            interval: 60,
-            tolerance: 20,
-            ...(loadBalance ? { strategy: "sticky-sessions" } : {}),
-        });
 
         groups.push(groupConfig);
     }
@@ -255,6 +250,8 @@ export function buildProxyGroups({
                   icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Lab.png`,
                   type: "url-test",
                   url: "https://cp.cloudflare.com/generate_204",
+                  interval: 60,
+                  tolerance: 20,
                   ...(!regexFilter
                       ? { proxies: lowCostNodes }
                       : { "include-all": true, filter: LOW_COST_GROUP_PATTERN }),
@@ -268,7 +265,6 @@ export function buildProxyGroups({
             proxies: defaultFallback,
             interval: 60,
             tolerance: 20,
-            lazy: false,
         },
         {
             name: PROXY_GROUPS.FALLBACK,
