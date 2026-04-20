@@ -1,12 +1,6 @@
 import { PROXY_GROUPS } from "./constants";
+import { buildList } from "./utils";
 import type { BaseLists, BuildBaseListsInput } from "./types";
-
-/**
- * 接受任意数量的元素（包括嵌套数组），展平后过滤掉所有假值（false、null、undefined 等）。
- */
-export const buildList = <T>(...elements: Array<T | T[] | false | null | undefined>): T[] => {
-    return elements.flat().filter(Boolean) as T[];
-};
 
 export function buildBaseLists({
     landing,
