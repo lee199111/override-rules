@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && esbuild src/main.ts --bundle --platform=neutral --format=iife --target=es2020 --outfile=convert.js --legal-comments=none --banner:js='/*! powerfullz 的 Substore 订阅转换脚本 | https://github.com/powerfullz/override-rules */'",
     "generate": "tsx yaml_generator/generator.ts",
-    "minify": "terser convert.js -o convert.min.js -c -m --comments \"/^!/\"",
+    "minify": "npm run typecheck && esbuild src/main.ts --bundle --platform=neutral --format=iife --target=es2020 --minify --outfile=convert.min.js --legal-comments=none --banner:js='/*! powerfullz 的 Substore 订阅转换脚本 | https://github.com/powerfullz/override-rules */'",
     "artifacts": "npm run build && npm run minify && npm run generate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

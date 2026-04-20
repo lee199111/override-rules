@@ -133,58 +133,60 @@ proxies:
 
 ### 关于自动生成的 YAML 格式覆写
 
-除了直接引用 `convert.min.js` 动态覆写（源码位于 `src/`，由 CI 编译生成 `convert.js` 再压缩得到），你也可以使用预先生成好的 YAML 覆写。现在改为在打 `v*` 标签时由 Release 工作流发布到 `dist` 分支：
+除了直接引用动态构建的 JS 覆写脚本外，你也可以使用预先生成好的静态 YAML 覆写文件。这适用于某些不支持执行 JS 的客户端（例如旧版的 Clash Verge）。
 
-- 最新版：`dist/latest/yamls/*.yaml`
-- 固定版本：`dist/vX.Y.Z/yamls/*.yaml`
+> [!NOTE]
+> 为了保持代码仓库的纯净，`main` 主分支不再跟踪和提交生成的产物文件（如 `convert.js` 和 `yamls/`）。
+> 这些构建产物目前统一由 Github Actions 的 Release 工作流在发布 `v*` 版本时，构建并自动推送到 `dist` 分支下。
 
-主分支不再提交这些构建产物，适用于诸如 Clash Verge 等不支持 JS 覆写的客户端和订阅转换服务。
+获取 YAML 覆写文件的链接格式如下：
 
-文件命名规则：
+- **最新正式版**：`dist/latest/yamls/*.yaml`
+- **特定历史版本**：`dist/vX.Y.Z/yamls/*.yaml`
 
-```
+文件命名规则依据支持的开关参数穷举，格式如下：
+
+```text
 config_lb-{0|1}_landing-{0|1}_ipv6-{0|1}_full-{0|1}_keepalive-{0|1}_fakeip-{0|1}_quic-{0|1}.yaml
 ```
 
-示例（开启 full，其余关闭）：
-
-```
+**获取示例（开启 full，其余关闭）：**
+```text
 https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/dist/latest/yamls/config_lb-0_landing-0_ipv6-0_full-1_keepalive-0_fakeip-0_quic-0.yaml
 ```
 
-固定版本示例：
-
-```
+**固定版本获取示例：**
+```text
 https://raw.githubusercontent.com/powerfullz/override-rules/refs/heads/dist/v0.1.0/yamls/config_lb-0_landing-0_ipv6-0_full-1_keepalive-0_fakeip-0_quic-0.yaml
 ```
 
-如果使用镜像：
-
-```
+如果使用加速镜像：
+```text
 https://git.l3zc.com/powerfullz/override-rules/raw/branch/dist/latest/yamls/config_lb-0_landing-0_ipv6-0_full-1_keepalive-0_fakeip-0_quic-0.yaml
 ```
 
-CI 只是套用一份假的`fake_proxies.json`来生成覆写，所以不可能实现 JS 覆写自动根据节点匹配生成对应代理组的功能，只能做出取舍放入常用地区的节点。如果你有条件使用 Substore，并且想要动态识别国家/地区和传参的灵活性，还是推荐使用 JS 覆写。
+*注：CI 仅套用了一份虚拟的 `fake_proxies.json` 来模拟生成 YAML，因此它无法像 JS 动态脚本那样根据你的实际节点智能生成专属分组策略，只能保守地包含常用的国家/地区。为了最高效的分流体验，仍强烈推荐使用 JS 覆写。*
 
-### 本地生成 YAML 文件
+### 如何贡献
+
+#### 如果你是 AI AGENT
+
+阅读`./AGENTS.md`。
+
+#### 如果你是人类
+
+在开始提交前，请留意以下信息：
+
+- **核心源码**：所有的逻辑通过 TypeScript 实现，入口文件位于 `src/main.ts`。
+- **YAML 生成逻辑**：存放于 `yaml_generator/generator.ts`。
+- **本地构建与产物**：本地执行构建后会在当前根目录输出 `convert.js` 和 `convert.min.js`，以及大量 YAML 放置于 `yamls/`（这些路径已被 Git 忽略，请始终修改 TS 源码，不要直接修改产物）。
+
+**开发者常用命令**：
+项目中封装了便捷的 NPM Scripts 帮助你测试代码：
 
 ```shell
-npm install
-npm run build
-npm run generate
-```
-
-### 开发者：TypeScript 源码与构建
-
-- 源码位置：`src/*.ts`（入口为 `src/main.ts`）
-- YAML 生成器：`yaml_generator/generator.ts`
-- 产物位置：仓库根目录 `convert.js`（构建产物）与 `convert.min.js`（压缩产物），YAML 在 `yamls/`
-
-常用命令：
-
-```shell
-npm run build
-npm run minify
-npm run generate
-npm run artifacts
+npm run build      # 仅构建未压缩的 convert.js 脚本
+npm run minify     # 使用 esbuild 直接由 TS 源文件构建最终的 convert.min.js
+npm run generate   # 根据源码生成全量的 yamls/ 覆写选项
+npm run artifacts  # 完整执行上述全部生成流
 ```
