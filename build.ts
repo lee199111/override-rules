@@ -12,18 +12,16 @@ const commonOptions: esbuild.BuildOptions = {
     format: "iife",
     target: "es2020",
     legalComments: "none",
-    banner: {
-        js: bannerText,
-    },
+    charset: "utf8",
+    banner: { js: bannerText },
 };
 
-esbuild.buildSync({
-    ...commonOptions,
-    outfile: "convert.js",
-});
-
-esbuild.buildSync({
-    ...commonOptions,
-    minify: true,
-    outfile: "convert.min.js",
-});
+await Promise.all([
+    esbuild.build({ ...commonOptions, outfile: "convert.js" }),
+    esbuild.build({
+        ...commonOptions,
+        minify: true,
+        outfile: "convert.min.js",
+        drop: ["debugger"], 
+    }),
+]);
