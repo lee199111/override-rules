@@ -63,7 +63,6 @@ const {
     countryThreshold,
 } = buildFeatureFlags(rawArgs);
 
-// eslint-disable-next-line no-unused-vars -- 通过 vm.runInContext 在 yaml_generator 中被调用
 function main(config: ClashConfig): ClashConfig {
     const resultConfig: ClashConfig = { proxies: config.proxies };
 

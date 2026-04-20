@@ -32,7 +32,7 @@ export function buildCountryProxyGroups({
         const meta = countriesMeta[country];
         if (!meta) continue;
 
-        let groupConfig: ProxyGroup = {
+        const groupConfig: ProxyGroup = {
             name: `${country}${NODE_SUFFIX}`,
             icon: meta.icon,
             type: groupType,

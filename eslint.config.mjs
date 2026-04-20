@@ -1,7 +1,13 @@
-const js = require("@eslint/js");
-const prettierConfig = require("eslint-config-prettier");
+import js from "@eslint/js";
+import tseslint from "typescript-eslint";
+import prettierConfig from "eslint-config-prettier";
 
-module.exports = [
+const tsRecommended = tseslint.configs.recommended.map((config) => ({
+    ...config,
+    files: ["**/*.ts"],
+}));
+
+export default [
     // 全局忽略
     {
         ignores: ["yamls/**", "convert.js", "convert.min.js", "node_modules/**"],
@@ -47,6 +53,19 @@ module.exports = [
             "no-var": "error",
             // 优先使用 const
             "prefer-const": ["warn", { destructuring: "all" }],
+        },
+    },
+
+    // TypeScript 规则：应用于所有 TS 文件
+    ...tsRecommended,
+    {
+        files: ["**/*.ts"],
+        rules: {
+            // 允许未使用变量以 _ 开头
+            "@typescript-eslint/no-unused-vars": [
+                "warn",
+                { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" },
+            ],
         },
     },
 

@@ -1,6 +1,6 @@
 export type UnknownRecord = Record<string, unknown>;
 
-export interface ScriptArgs extends UnknownRecord {}
+export type ScriptArgs = UnknownRecord;
 
 export interface FeatureFlags {
     loadBalance: boolean;
