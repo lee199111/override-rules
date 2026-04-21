@@ -10,7 +10,7 @@ export const CDN_URL = "https://cdn.jsdelivr.net";
  *   其中 `(?i)` 前缀是 Clash/Mihomo 的不区分大小写语法。
  */
 export const LOW_COST_FILTER = "0\\.[0-5]|低倍率|省流|实验性";
-export const LOW_COST_GROUP_PATTERN = "(?i)0\\.[0-5]|低倍率|省流|大流量|实验性";
+export const LOW_COST_GROUP_PATTERN = "(?i)0\\.[0-5]|低倍率|省流|实验性";
 export const LOW_COST_REGEX = new RegExp(LOW_COST_FILTER, "i");
 export const LANDING_REGEX = /家宽|家庭宽带|商宽|商业宽带|星链|Starlink|落地/i;
 export const LANDING_PATTERN = "(?i)家宽|家庭宽带|商宽|商业宽带|星链|Starlink|落地";
