@@ -238,16 +238,34 @@ export function buildProxyGroups({
             proxies: defaultProxies,
         },
         {
+            name: PROXY_GROUPS.SOGOU_INPUT,
+            icon: `${CDN_URL}/gh/powerfullz/override-rules@master/icons/Sougou.png`,
+            type: "select",
+            proxies: [PROXY_GROUPS.DIRECT, "REJECT"],
+        },
+        {
             name: PROXY_GROUPS.SSH,
             icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Server.png`,
             type: "select",
             proxies: defaultProxies,
         },
         {
-            name: PROXY_GROUPS.SOGOU_INPUT,
-            icon: `${CDN_URL}/gh/powerfullz/override-rules@master/icons/Sougou.png`,
-            type: "select",
-            proxies: [PROXY_GROUPS.DIRECT, "REJECT"],
+            name: PROXY_GROUPS.AUTO,
+            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Auto.png`,
+            type: "url-test",
+            url: "https://cp.cloudflare.com/generate_204",
+            proxies: defaultFallback,
+            interval: 60,
+            tolerance: 20,
+        },
+        {
+            name: PROXY_GROUPS.FALLBACK,
+            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Available_1.png`,
+            type: "fallback",
+            url: "https://cp.cloudflare.com/generate_204",
+            proxies: defaultFallback,
+            interval: 60,
+            tolerance: 20,
         },
         {
             name: PROXY_GROUPS.DIRECT,
@@ -274,24 +292,6 @@ export function buildProxyGroups({
                       : { "include-all": true, filter: LOW_COST_NODE_MATCHER.pattern }),
               }
             : null,
-        {
-            name: PROXY_GROUPS.AUTO,
-            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Auto.png`,
-            type: "url-test",
-            url: "https://cp.cloudflare.com/generate_204",
-            proxies: defaultFallback,
-            interval: 60,
-            tolerance: 20,
-        },
-        {
-            name: PROXY_GROUPS.FALLBACK,
-            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Available_1.png`,
-            type: "fallback",
-            url: "https://cp.cloudflare.com/generate_204",
-            proxies: defaultFallback,
-            interval: 60,
-            tolerance: 20,
-        },
         ...countryProxyGroups,
     ];
 
