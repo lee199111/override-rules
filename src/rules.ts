@@ -37,6 +37,13 @@ const baseRules = [
     `MATCH,${PROXY_GROUPS.SELECT}`,
 ];
 
+/**
+ * 构建最终的规则列表。
+ *
+ * @param {Object} params - 构建参数
+ * @param {boolean} params.quicEnabled - 是否启用 QUIC（如未启用会插入 UDP:443 拦截规则）
+ * @returns {string[]} 规则字符串数组
+ */
 export function buildRules({ quicEnabled }: { quicEnabled: boolean }): string[] {
     const ruleList = [...baseRules];
     if (!quicEnabled) {
