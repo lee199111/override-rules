@@ -176,12 +176,6 @@ export function buildProxyGroups({
                 : defaultProxies,
         },
         {
-            name: PROXY_GROUPS.CATEGORY_ENTERTAINMENT,
-            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Streaming.png`,
-            type: "select",
-            proxies: defaultProxies,
-        },
-        {
             name: PROXY_GROUPS.YOUTUBE,
             icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/YouTube.png`,
             type: "select",
@@ -230,12 +224,6 @@ export function buildProxyGroups({
             proxies: hasUS
                 ? ["美国节点", PROXY_GROUPS.SELECT, PROXY_GROUPS.MANUAL]
                 : defaultProxies,
-        },
-        {
-            name: PROXY_GROUPS.PORN,
-            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Pornhub_2.png`,
-            type: "select",
-            proxies: defaultProxies,
         },
         {
             name: PROXY_GROUPS.EHENTAI,
