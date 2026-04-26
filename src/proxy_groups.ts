@@ -176,6 +176,12 @@ export function buildProxyGroups({
                 : defaultProxies,
         },
         {
+            name: PROXY_GROUPS.CATEGORY_ENTERTAINMENT,
+            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Streaming.png`,
+            type: "select",
+            proxies: defaultProxies,
+        },
+        {
             name: PROXY_GROUPS.YOUTUBE,
             icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/YouTube.png`,
             type: "select",
@@ -200,16 +206,22 @@ export function buildProxyGroups({
             proxies: defaultProxies,
         },
         {
-            name: PROXY_GROUPS.EHENTAI,
-            icon: `${CDN_URL}/gh/powerfullz/override-rules@master/icons/Ehentai.png`,
-            type: "select",
-            proxies: defaultProxies,
-        },
-        {
             name: PROXY_GROUPS.TELEGRAM,
             icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Telegram_X.png`,
             type: "select",
             proxies: defaultProxies,
+        },
+        {
+            name: PROXY_GROUPS.TWITTER,
+            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Twitter.png`,
+            type: "select",
+            proxies: defaultProxies,
+        },
+        {
+            name: PROXY_GROUPS.WEIBO,
+            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Weibo.png`,
+            type: "select",
+            proxies: defaultProxiesDirect,
         },
         {
             name: PROXY_GROUPS.TRUTH_SOCIAL,
@@ -218,6 +230,18 @@ export function buildProxyGroups({
             proxies: hasUS
                 ? ["美国节点", PROXY_GROUPS.SELECT, PROXY_GROUPS.MANUAL]
                 : defaultProxies,
+        },
+        {
+            name: PROXY_GROUPS.PORN,
+            icon: `${CDN_URL}/gh/powerfullz/override-rules@master/icons/Pornhub_2.png`,
+            type: "select",
+            proxies: defaultProxies,
+        },
+        {
+            name: PROXY_GROUPS.EHENTAI,
+            icon: `${CDN_URL}/gh/powerfullz/override-rules@master/icons/Ehentai.png`,
+            type: "select",
+            proxies: defaultProxies,
         },
         {
             name: PROXY_GROUPS.PIKPAK,
