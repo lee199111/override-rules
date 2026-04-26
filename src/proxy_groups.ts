@@ -126,19 +126,19 @@ export function buildProxyGroups({
         },
         {
             name: PROXY_GROUPS.CRYPTO,
-            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Cryptocurrency_3.png`,
+            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Cryptocurrency_1.png`,
             type: "select",
             proxies: defaultProxies,
         },
         {
             name: PROXY_GROUPS.APPLE,
-            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Apple.png`,
+            icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Apple_2.png`,
             type: "select",
             proxies: defaultProxies,
         },
         {
             name: PROXY_GROUPS.GOOGLE,
-            icon: `${CDN_URL}/gh/powerfullz/override-rules@master/icons/Google.png`,
+            icon: `${CDN_URL}/gh/Orz-3/mini@master/Color/Google.png`,
             type: "select",
             proxies: defaultProxies,
         },

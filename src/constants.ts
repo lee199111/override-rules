@@ -29,7 +29,7 @@ export const PROXY_GROUPS = {
     TELEGRAM: "Telegram",
     TRUTH_SOCIAL: "真相社交",
     PIKPAK: "PikPak网盘",
-    SSH: "SSH(22端口)",
+    SSH: "SSH",
     SOGOU_INPUT: "搜狗输入法",
     AD_BLOCK: "广告拦截",
     GLOBAL: "GLOBAL",
