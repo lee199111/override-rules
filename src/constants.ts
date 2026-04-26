@@ -130,4 +130,32 @@ export const countriesMeta: Record<string, CountryMeta> = {
         pattern: "马来西亚|马来|\\b(?:MY|my)(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Malaysia|🇲🇾",
         icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Malaysia.png`,
     },
+    阿根廷: {
+        pattern:
+            "阿根廷|布宜诺斯艾利斯|\\b(?:AR|ar)(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Argentina|EZE|🇦🇷",
+        icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Argentina.png`,
+    },
+    芬兰: {
+        pattern:
+            "芬兰|赫尔辛基|\\b(?:FI|fi)(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Finland|HEL|🇫🇮",
+        icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Finland.png`,
+    },
+    埃及: {
+        pattern: "埃及|开罗|\\b(?:EG|eg)(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Egypt|CAI|🇪🇬",
+        icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Egypt.png`,
+    },
+    菲律宾: {
+        pattern:
+            "菲律宾|马尼拉|\\b(?:PH|ph)(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Philippines|MNL|🇵🇭",
+        icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Philippines.png`,
+    },
+    土耳其: {
+        pattern:
+            "土耳其|伊斯坦布尔|\\b(?:TR|tr)(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Turkey|Türkiye|IST|🇹🇷",
+        icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Turkey.png`,
+    },
+    乌克兰: {
+        pattern: "乌克兰|基辅|\\b(?:UA|ua)(?:[-_ ]?\\d+(?:[-_ ]?[A-Za-z]{2,})?)?\\b|Ukraine|KBP|🇺🇦",
+        icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Ukraine.png`,
+    },
 };
