@@ -1,3 +1,9 @@
+## [2.1.1](https://github.com/powerfullz/override-rules/compare/src-v2.1.0...src-v2.1.1) (2026-05-01)
+
+
+### Features
+
+* adjust proxy group ordering ([2c087d4](https://github.com/powerfullz/override-rules/commit/2c087d4c96a343d3b8a99f0953a387a1d3688b5c))
 # [2.1.0](https://github.com/powerfullz/override-rules/compare/src-v2.0.16...src-v2.1.0) (2026-04-26)
 
 
