@@ -71,6 +71,7 @@ export interface BuildProxyGroupsInput {
     countries: string[];
     countryProxyGroups: ProxyGroup[];
     lowCostNodes: string[];
+    manualProxies: string[];
     landingNodes: string[];
     defaultProxies: string[];
     defaultProxiesDirect: string[];

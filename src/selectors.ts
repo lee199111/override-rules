@@ -24,10 +24,10 @@ export function buildBaseLists({
     const defaultSelector = buildList(
         PROXY_GROUPS.AUTO,
         PROXY_GROUPS.FALLBACK,
+        PROXY_GROUPS.MANUAL,
+        lowCost && PROXY_GROUPS.LOW_COST,
         landing && PROXY_GROUPS.LANDING,
         countryGroupNames,
-        lowCost && PROXY_GROUPS.LOW_COST,
-        PROXY_GROUPS.MANUAL,
         "DIRECT"
     );
 

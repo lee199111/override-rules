@@ -66,9 +66,20 @@ const {
 
 function main(config: ClashConfig): ClashConfig {
     const resultConfig: ClashConfig = { proxies: config.proxies };
+    const allProxyNames = (resultConfig.proxies || [])
+        .map((proxy) => proxy.name)
+        .filter((name): name is string => Boolean(name));
+    const metaProxyNames = allProxyNames.filter((name) => /^(Traffic|Expire):/i.test(name));
+    const metaProxySet = new Set(metaProxyNames);
 
     const countryInfo = parseCountries(resultConfig, landing);
     const lowCostNodes = parseLowCost(resultConfig);
+    const lowCostSet = new Set(lowCostNodes);
+    const manualProxies = [
+        ...metaProxyNames,
+        ...lowCostNodes,
+        ...allProxyNames.filter((name) => !metaProxySet.has(name) && !lowCostSet.has(name)),
+    ];
     const countryGroupNames = getCountryGroupNames(countryInfo, countryThreshold);
     const countries = stripNodeSuffix(countryGroupNames);
 
@@ -104,6 +115,7 @@ function main(config: ClashConfig): ClashConfig {
         countries,
         countryProxyGroups,
         lowCostNodes,
+        manualProxies,
         landingNodes,
         defaultProxies,
         defaultProxiesDirect,

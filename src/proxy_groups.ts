@@ -74,6 +74,7 @@ export function buildProxyGroups({
     countries,
     countryProxyGroups,
     lowCostNodes,
+    manualProxies,
     landingNodes,
     defaultProxies,
     defaultProxiesDirect,
@@ -95,9 +96,22 @@ export function buildProxyGroups({
         {
             name: PROXY_GROUPS.MANUAL,
             icon: `${CDN_URL}/gh/shindgewongxj/WHATSINStash@master/icon/select.png`,
-            "include-all": true,
             type: "select",
+            proxies: manualProxies,
         },
+        lowCostNodes.length > 0 || regexFilter
+            ? {
+                  name: PROXY_GROUPS.LOW_COST,
+                  icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Lab.png`,
+                  type: "url-test",
+                  url: "https://cp.cloudflare.com/generate_204",
+                  interval: 60,
+                  tolerance: 20,
+                  ...(!regexFilter
+                      ? { proxies: lowCostNodes }
+                      : { "include-all": true, filter: LOW_COST_NODE_MATCHER.pattern }),
+              }
+            : null,
         landing
             ? {
                   name: PROXY_GROUPS.FRONT_PROXY,
@@ -279,19 +293,6 @@ export function buildProxyGroups({
             type: "select",
             proxies: ["REJECT", "REJECT-DROP", PROXY_GROUPS.DIRECT],
         },
-        lowCostNodes.length > 0 || regexFilter
-            ? {
-                  name: PROXY_GROUPS.LOW_COST,
-                  icon: `${CDN_URL}/gh/Koolson/Qure@master/IconSet/Color/Lab.png`,
-                  type: "url-test",
-                  url: "https://cp.cloudflare.com/generate_204",
-                  interval: 60,
-                  tolerance: 20,
-                  ...(!regexFilter
-                      ? { proxies: lowCostNodes }
-                      : { "include-all": true, filter: LOW_COST_NODE_MATCHER.pattern }),
-              }
-            : null,
         ...countryProxyGroups,
     ];
 
